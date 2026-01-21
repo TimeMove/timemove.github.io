@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TimeMove | Gợi ý điểm đến & cách đi (toàn thế giới)</title>
   <meta name="description" content="TimeMove gợi ý điểm đến thú vị trên khắp thế giới và cách di chuyển dễ hiểu: bay thẳng, quá cảnh, tàu, xe, metro..." />
+
   <style>
     :root{
       --bg:#F6F8FC;
@@ -15,20 +16,61 @@
       --blue:#1A73E8;
       --blue2:#E8F0FE;
       --shadow: 0 10px 30px rgba(15,23,42,.08);
+      --shadow2: 0 16px 40px rgba(15,23,42,.12);
       --radius:18px;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--text)}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+    }
     a{color:inherit;text-decoration:none}
-    .topbar{position:sticky;top:0;z-index:20;background:rgba(246,248,252,.86);backdrop-filter: blur(10px);border-bottom:1px solid var(--border)}
-    .nav{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px}
+
+    /* Top bar */
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:rgba(246,248,252,.86);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      max-width:1120px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;padding:14px 20px;
+    }
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-    .logo{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),#3aa0ff);color:white;font-weight:900;box-shadow:0 10px 20px rgba(26,115,232,.18)}
+    .logo{
+      width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--blue),#3aa0ff);
+      color:#fff;font-weight:900;
+      box-shadow:0 10px 20px rgba(26,115,232,.18);
+    }
     .menu{display:flex;gap:14px;flex-wrap:wrap}
     .menu a{padding:8px 10px;border-radius:12px;color:var(--muted)}
     .menu a:hover{background:rgba(26,115,232,.08);color:var(--text)}
-    .btn{padding:10px 14px;border-radius:14px;border:1px solid rgba(26,115,232,.25);background:rgba(26,115,232,.10);color:var(--text);font-weight:700;display:inline-block}
-    .btnPrimary{border:0;background:var(--blue);color:#fff;box-shadow:0 12px 22px rgba(26,115,232,.22)}
+
+    .btn{
+      padding:10px 14px;border-radius:14px;
+      border:1px solid rgba(26,115,232,.25);
+      background:rgba(26,115,232,.10);
+      color:var(--text);font-weight:700;display:inline-block;
+    }
+    .btnPrimary{
+      border:0;background:var(--blue);color:#fff;
+      box-shadow:0 12px 22px rgba(26,115,232,.22);
+      cursor:pointer;
+    }
+    .btnGhost{
+      padding:10px 12px;border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;color:var(--text);font-weight:700;
+      cursor:pointer;
+    }
+    .btnGhost:hover{border-color:rgba(26,115,232,.35)}
+
     .wrap{max-width:1120px;margin:0 auto;padding:20px}
 
     /* Hero */
@@ -68,13 +110,19 @@
       padding:18px;
     }
     .boxTitle{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-    .badge{font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(26,115,232,.10);border:1px solid rgba(26,115,232,.18);color:#185abc;font-weight:700}
+    .badge{
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      background:rgba(26,115,232,.10);
+      border:1px solid rgba(26,115,232,.18);
+      color:#185abc;font-weight:700;
+      white-space:nowrap;
+    }
     .form{margin-top:12px;display:grid;gap:10px}
     label{font-size:12px;color:var(--muted)}
     .field{display:grid;gap:6px}
     input,select{
       width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--border);
-      background:#fff;color:var(--text);outline:none
+      background:#fff;color:var(--text);outline:none;
     }
     input:focus,select:focus{border-color:rgba(26,115,232,.45); box-shadow:0 0 0 4px rgba(26,115,232,.10)}
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -86,7 +134,7 @@
     h2{margin:0;font-size:22px}
     .small{color:var(--muted);font-size:14px;margin:0}
 
-    /* Cards */
+    /* Cards (places) */
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
     .card{
       background:var(--card);
@@ -94,21 +142,34 @@
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       overflow:hidden;
+      transition: transform .22s ease, box-shadow .22s ease;
     }
+    .card:hover{transform:translateY(-6px); box-shadow:var(--shadow2)}
     .thumb{
-      height:150px;
-      background:linear-gradient(135deg, rgba(26,115,232,.18), rgba(26,115,232,.04));
-      display:flex;align-items:end;justify-content:space-between;
-      padding:12px;
+      height:170px;
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      display:flex;align-items:flex-end;justify-content:space-between;
+      padding:12px;color:#fff;
     }
-    .tag{font-size:12px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--border);color:var(--muted);font-weight:700}
+    .thumb::before{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(15,23,42,.05), rgba(15,23,42,.62));
+    }
+    .thumb > *{position:relative;z-index:1}
+    .tag{
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(230,234,242,.9);
+      color:#334155;font-weight:700;
+    }
     .content{padding:14px}
     .title{margin:0 0 6px;font-size:18px}
     .meta{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btnGhost{padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:#fff;color:var(--text);font-weight:700}
-    .btnGhost:hover{border-color:rgba(26,115,232,.35)}
     .divider{height:1px;background:var(--border);margin:12px 0}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
 
     /* Routes */
     .routes{display:grid;gap:12px;margin-top:12px}
@@ -118,7 +179,9 @@
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       padding:14px;
+      transition: transform .22s ease, box-shadow .22s ease;
     }
+    .routeCard:hover{transform:translateY(-3px); box-shadow:var(--shadow2)}
     .routeTop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
     .routeName{font-weight:800}
     .routeGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
@@ -127,10 +190,25 @@
     .mode span{color:var(--muted);font-size:12px}
     .routeCta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
 
-    /* Floating buttons (info) */
+    /* Reveal on scroll */
+    .reveal{opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease;}
+    .reveal.in{opacity:1; transform: translateY(0);}
+
+    /* Floating buttons */
     .float{position:fixed;right:18px;bottom:18px;z-index:30;display:flex;flex-direction:column;gap:10px}
-    .fab{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;background:var(--blue);color:#fff;font-weight:900;box-shadow:0 16px 28px rgba(26,115,232,.28);border:0;cursor:pointer}
-    .fab2{background:#fff;color:var(--text);border:1px solid var(--border);box-shadow:var(--shadow);font-weight:800}
+    .fab{
+      width:52px;height:52px;border-radius:18px;
+      display:grid;place-items:center;
+      background:var(--blue);color:#fff;font-weight:900;
+      box-shadow:0 16px 28px rgba(26,115,232,.28);
+      border:0;cursor:pointer;
+    }
+    .fab2{
+      background:#fff;color:var(--text);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:800;
+    }
 
     footer{padding:18px 0;color:var(--muted);text-align:center}
 
@@ -146,6 +224,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="topbar">
     <div class="nav">
@@ -170,23 +249,21 @@
         <h1>Đi đâu tiếp theo? TimeMove gợi ý cho bạn 🌍</h1>
         <p class="sub">
           Ở đây tụi mình chia sẻ những <b>điểm đến thú vị trên khắp thế giới</b> và cách di chuyển
-          <b>dễ hiểu – dễ chọn</b>. Bạn có thể xem nhanh “đi như thế nào”, rồi đọc thêm kinh nghiệm để tự tin lên đường.
+          <b>dễ hiểu – dễ chọn</b>. Bạn xem nhanh “đi như thế nào”, rồi đọc thêm kinh nghiệm để tự tin lên đường.
         </p>
-
         <div class="chips">
           <div class="chip">🧭 <b>Chọn điểm đến</b> theo vibe</div>
           <div class="chip">🚌 <b>Gợi ý cách đi</b> gọn gàng</div>
           <div class="chip">🧳 <b>Mẹo du lịch</b> dễ áp dụng</div>
         </div>
-
-        <p class="hint">Tip: Bạn có thể dùng phần “Tìm tuyến” để lọc nhanh, rồi bấm “Xem chi tiết” để đọc đầy đủ.</p>
+        <p class="hint">Tip: Bấm “Xem chi tiết” để đọc bài đầy đủ. Mình đang bổ sung dần các nước nhé 🙂</p>
       </div>
 
       <div class="heroRight">
         <div class="boxTitle">
           <div>
             <b>Tìm tuyến đi lại (tham khảo)</b><br/>
-            <span class="small">Chọn nơi đi & nơi đến — TimeMove sẽ gợi ý cách đi phổ biến</span>
+            <span class="small">Chọn nơi đi & nơi đến — TimeMove gợi ý hướng di chuyển phổ biến</span>
           </div>
           <span class="badge">Dễ dùng</span>
         </div>
@@ -207,7 +284,7 @@
             </div>
             <div class="field">
               <label>Nơi đến</label>
-              <input id="to" placeholder="Ví dụ: Tokyo, Paris, Bali, New York..." />
+              <input id="to" placeholder="Ví dụ: Tokyo, Paris, Bali, Uzbekistan..." />
             </div>
           </div>
 
@@ -228,7 +305,7 @@
           </div>
 
           <button class="btn btnPrimary" onclick="findRoute()">Gợi ý cách đi</button>
-          <div class="hint">Lưu ý: số giờ/chi phí dưới đây là ví dụ để trình bày. Sau này mình giúp bạn cập nhật dữ liệu thật.</div>
+          <div class="hint">Lưu ý: Thời gian/chi phí bên dưới là ví dụ trình bày. Sau này mình giúp bạn cập nhật dữ liệu thật.</div>
         </div>
       </div>
     </div>
@@ -246,7 +323,7 @@
       <div class="grid">
         <!-- Tokyo -->
         <div class="card">
-          <div class="thumb">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=1400&q=70');">
             <span class="tag">Thành phố</span>
             <span class="tag">Văn hoá</span>
           </div>
@@ -256,7 +333,7 @@
             <div class="divider"></div>
             <p class="meta">Từ Việt Nam: ✈️ bay thẳng ~5–6h (tuỳ chặng) • Quá cảnh: rẻ hơn nhưng lâu hơn.</p>
             <div class="actions">
-              <button class="btnGhost" onclick="go('tokyo.html')">Xem chi tiết</button>
+              <a class="btnGhost" href="tokyo.html">Xem chi tiết</a>
               <button class="btn btnPrimary" onclick="presetRoute('Việt Nam','Tokyo')">Gợi ý cách đi</button>
             </div>
           </div>
@@ -264,17 +341,17 @@
 
         <!-- Paris -->
         <div class="card">
-          <div class="thumb">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1400&q=70');">
             <span class="tag">Châu Âu</span>
             <span class="tag">Lãng mạn</span>
           </div>
           <div class="content">
             <h3 class="title">Paris 🇫🇷</h3>
-            <p class="meta">Đi dạo bờ sông Seine, bảo tàng, cafe vỉa hè “đúng chất”.</p>
+            <p class="meta">Bảo tàng, cafe vỉa hè, đi dạo bên sông Seine “đúng chất”.</p>
             <div class="divider"></div>
-            <p class="meta">Từ Việt Nam: ✈️ thường quá cảnh 1 chặng • Tổng thời gian ~15–20h.</p>
+            <p class="meta">Từ Việt Nam: ✈️ thường quá cảnh 1 chặng • tổng ~15–20h.</p>
             <div class="actions">
-              <button class="btnGhost" onclick="go('paris.html')">Xem chi tiết</button>
+              <a class="btnGhost" href="paris.html">Xem chi tiết</a>
               <button class="btn btnPrimary" onclick="presetRoute('Việt Nam','Paris')">Gợi ý cách đi</button>
             </div>
           </div>
@@ -282,7 +359,7 @@
 
         <!-- Bali -->
         <div class="card">
-          <div class="thumb">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1400&q=70');">
             <span class="tag">Biển</span>
             <span class="tag">Chill</span>
           </div>
@@ -290,32 +367,32 @@
             <h3 class="title">Bali 🇮🇩</h3>
             <p class="meta">Biển – rừng – resort, hợp nghỉ dưỡng và “đi trốn”.</p>
             <div class="divider"></div>
-            <p class="meta">Từ Việt Nam: ✈️ bay thẳng/1 chặng (tuỳ mùa) • Di chuyển nội đảo: xe máy/ô tô.</p>
+            <p class="meta">Từ Việt Nam: ✈️ bay thẳng/1 chặng (tuỳ mùa) • Nội đảo: xe máy/ô tô.</p>
             <div class="actions">
-              <button class="btnGhost" onclick="go('bali.html')">Xem chi tiết</button>
+              <a class="btnGhost" href="bali.html">Xem chi tiết</a>
               <button class="btn btnPrimary" onclick="presetRoute('Việt Nam','Bali')">Gợi ý cách đi</button>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Uzbekistan -->
-<div class="card">
-  <div class="thumb">
-    <span class="tag">Trung Á</span>
-    <span class="tag">Con đường Tơ lụa</span>
-  </div>
-  <div class="content">
-    <h3 class="title">Uzbekistan 🇺🇿</h3>
-    <p class="meta">Cổ kính, yên bình, vibe “nghìn lẻ một đêm” ở Trung Á.</p>
-    <div class="divider"></div>
-    <p class="meta">Từ Việt Nam: ✈️ thường quá cảnh • khoảng ~15–25h (tuỳ chặng)</p>
-    <div class="actions">
-      <a class="btnGhost" href="uzbekistan.html">Xem chi tiết</a>
-      <button class="btn btnPrimary" onclick="presetRoute('Việt Nam','Uzbekistan')">Gợi ý cách đi</button>
-    </div>
-  </div>
-</div>
 
+        <!-- Uzbekistan -->
+        <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1602260235481-5d2a6d7bf48d?auto=format&fit=crop&w=1400&q=70');">
+            <span class="tag">Trung Á</span>
+            <span class="tag">Tơ lụa</span>
+          </div>
+          <div class="content">
+            <h3 class="title">Uzbekistan 🇺🇿</h3>
+            <p class="meta">Thành phố cổ, mái vòm xanh ngọc, vibe “nghìn lẻ một đêm”.</p>
+            <div class="divider"></div>
+            <p class="meta">Từ Việt Nam: ✈️ thường quá cảnh • khoảng ~15–25h (tuỳ chặng).</p>
+            <div class="actions">
+              <a class="btnGhost" href="uzbekistan.html">Xem chi tiết</a>
+              <button class="btn btnPrimary" onclick="presetRoute('Việt Nam','Uzbekistan')">Gợi ý cách đi</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ROUTES -->
@@ -323,7 +400,7 @@
       <div class="sectionHead">
         <div>
           <h2>Cách đi (trình bày dễ hiểu)</h2>
-          <p class="small">Mục này giúp bạn hình dung nhanh: bay thẳng / quá cảnh / đi lại trong thành phố</p>
+          <p class="small">Giúp bạn hình dung nhanh: bay thẳng / quá cảnh / đi lại trong thành phố</p>
         </div>
       </div>
 
@@ -340,8 +417,8 @@
             <div class="mode"><b>🧾 Gợi ý</b><span>Thẻ IC + eSIM</span></div>
           </div>
           <div class="routeCta">
-            <button class="btnGhost" onclick="go('tokyo.html')">Đọc bài Tokyo</button>
-            <button class="btn btnPrimary" onclick="alert('Bạn có thể thêm phần: checklist chuẩn bị, visa, sim…')">Gợi ý chuẩn bị</button>
+            <button class="btnGhost" onclick="alert('Bạn có thể tạo tokyo.html sau để bài này chạy thật nhé 🙂')">Đọc bài Tokyo</button>
+            <button class="btn btnPrimary" onclick="alert('Gợi ý: checklist chuẩn bị, visa, sim, pass tàu...')">Gợi ý chuẩn bị</button>
           </div>
         </div>
 
@@ -357,8 +434,25 @@
             <div class="mode"><b>🧾 Gợi ý</b><span>Bảo hiểm + lịch trình</span></div>
           </div>
           <div class="routeCta">
-            <button class="btnGhost" onclick="go('paris.html')">Đọc bài Paris</button>
-            <button class="btn btnPrimary" onclick="alert('Bạn có thể thêm: map tuyến metro, pass tàu, tip đổi tiền…')">Mẹo đi lại</button>
+            <button class="btnGhost" onclick="alert('Bạn có thể tạo paris.html sau để bài này chạy thật nhé 🙂')">Đọc bài Paris</button>
+            <button class="btn btnPrimary" onclick="alert('Gợi ý: map metro, pass tàu, tip đổi tiền...')">Mẹo đi lại</button>
+          </div>
+        </div>
+
+        <div class="routeCard">
+          <div class="routeTop">
+            <div class="routeName">Việt Nam → Uzbekistan</div>
+            <span class="badge">Tham khảo</span>
+          </div>
+          <div class="routeGrid">
+            <div class="mode"><b>✈️ Quá cảnh</b><span>~15–25h • tuỳ chặng</span></div>
+            <div class="mode"><b>🚆 Nội địa</b><span>Tàu rất tiện</span></div>
+            <div class="mode"><b>🚕 Di chuyển</b><span>Taxi/đi bộ</span></div>
+            <div class="mode"><b>🧾 Gợi ý</b><span>Đổi tiền + map</span></div>
+          </div>
+          <div class="routeCta">
+            <a class="btnGhost" href="uzbekistan.html">Đọc bài Uzbekistan</a>
+            <button class="btn btnPrimary" onclick="alert('Gợi ý: lịch trình Samarkand - Bukhara - Khiva 7 ngày')">Gợi ý lịch trình</button>
           </div>
         </div>
       </div>
@@ -375,20 +469,31 @@
 
       <div class="grid">
         <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=70');">
+            <span class="tag">Tip</span><span class="tag">Bay</span>
+          </div>
           <div class="content">
             <h3 class="title">Bay thẳng vs quá cảnh</h3>
-            <p class="meta">Nếu bạn ít thời gian thì bay thẳng cho khỏe. Muốn tiết kiệm, canh chuyến quá cảnh nhưng nhớ để dư thời gian nối chuyến nhé.</p>
+            <p class="meta">Ít thời gian thì bay thẳng cho khoẻ. Muốn tiết kiệm, canh chuyến quá cảnh nhưng nhớ để dư thời gian nối chuyến nhé.</p>
           </div>
         </div>
+
         <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1520975958225-4f6f7f95a6f2?auto=format&fit=crop&w=1400&q=70');">
+            <span class="tag">Tip</span><span class="tag">Di chuyển</span>
+          </div>
           <div class="content">
-            <h3 class="title">Di chuyển trong thành phố</h3>
-            <p class="meta">Nhiều nơi đi metro/bus rất tiện. Bạn cứ chuẩn bị thẻ thanh toán/IC card và tải map offline là “ổn áp”.</p>
+            <h3 class="title">Đi lại trong thành phố</h3>
+            <p class="meta">Nhiều nơi đi metro/bus rất tiện. Chuẩn bị thẻ thanh toán/IC card và tải map offline là “ổn áp”.</p>
           </div>
         </div>
+
         <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1400&q=70');">
+            <span class="tag">Tip</span><span class="tag">Lịch trình</span>
+          </div>
           <div class="content">
-            <h3 class="title">Lên lịch trình nhẹ nhàng</h3>
+            <h3 class="title">Lịch trình nhẹ nhàng</h3>
             <p class="meta">Đừng nhồi quá nhiều điểm trong một ngày. Chừa thời gian đi dạo, ăn ngon, nghỉ ngơi — chuyến đi sẽ vui hơn nhiều.</p>
           </div>
         </div>
@@ -400,7 +505,7 @@
       <div class="sectionHead">
         <div>
           <h2>Liên hệ</h2>
-          <p class="small">Bạn có thể để form/Email ở đây (tuỳ bạn)</p>
+          <p class="small">Bạn có thể gắn mạng xã hội thật ở đây</p>
         </div>
       </div>
 
@@ -416,7 +521,7 @@
           <div class="mode"><b>🗺️ Phạm vi</b><span>Toàn thế giới</span></div>
         </div>
         <div class="routeCta">
-          <button class="btn btnPrimary" onclick="alert('Bạn có thể gắn link mạng xã hội thật vào đây.')">Cập nhật thông tin</button>
+          <button class="btn btnPrimary" onclick="alert('Bạn có thể thay bằng link thật nhé 🙂')">Cập nhật info</button>
           <button class="btnGhost" onclick="window.scrollTo({top:0,behavior:'smooth'})">Lên đầu trang</button>
         </div>
       </div>
@@ -426,8 +531,8 @@
   </div>
 
   <div class="float">
-    <button class="fab" title="Bản đồ (demo)" onclick="alert('Demo: Sau này gắn Google Maps/Mapbox hoặc link map.')">🗺️</button>
-    <button class="fab fab2" title="Góp ý (demo)" onclick="alert('Demo: Sau này thêm form góp ý hoặc Google Form.')">✉️</button>
+    <button class="fab" title="Bản đồ (demo)" onclick="alert('Sau này gắn Google Maps/Mapbox hoặc link map nhé 🙂')">🗺️</button>
+    <button class="fab fab2" title="Góp ý (demo)" onclick="alert('Sau này thêm form góp ý/Google Form nhé 🙂')">✉️</button>
   </div>
 
   <script>
@@ -444,16 +549,24 @@
       const to = document.getElementById('to').value.trim();
       const mode = document.getElementById('mode').value;
       if(!to){ alert("Bạn nhập Nơi đến giúp mình nhé 😊"); return; }
-
       const pref = (mode==="all") ? "xem tổng quan" : (mode==="fast"?"ưu tiên nhanh":"ưu tiên " + (mode==="cheap"?"tiết kiệm":"thoải mái"));
-      alert("Gợi ý (demo): " + from + " → " + to + " | " + pref + ".\\nTip: bấm vào các bài Tokyo/Paris/Bali để xem nội dung chi tiết.");
+      alert("Gợi ý (demo): " + from + " → " + to + " | " + pref + ".");
       window.location.hash = "#ketnoi";
     }
 
-    function go(page){
-      // Khi bạn tạo các file tokyo.html/paris.html/bali.html thì link sẽ chạy thật
-      window.location.href = page;
-    }
+    // Reveal on scroll
+    document.querySelectorAll('.card, .routeCard, .heroLeft, .heroRight').forEach(el => el.classList.add('reveal'));
+
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:0.12});
+
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
