@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TimeMove | Du lịch & Kết nối giao thông</title>
+  <meta name="description" content="TimeMove giới thiệu điểm đến du lịch và gợi ý kết nối giao thông (máy bay, tàu, xe, ô tô) theo phong cách hiện đại." />
+  <style>
+    :root{
+      --bg:#F6F8FC;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#E6EAF2;
+      --blue:#1A73E8;
+      --blue2:#E8F0FE;
+      --shadow: 0 10px 30px rgba(15,23,42,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1120px;margin:0 auto;padding:20px}
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:rgba(246,248,252,.85);backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 20px;max-width:1120px;margin:0 auto}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .logo{
+      width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--blue),#3aa0ff);color:white;font-weight:900;
+      box-shadow:0 10px 20px rgba(26,115,232,.18);
+    }
+    .menu{display:flex;gap:14px;flex-wrap:wrap}
+    .menu a{padding:8px 10px;border-radius:12px;color:var(--muted)}
+    .menu a:hover{background:rgba(26,115,232,.08);color:var(--text)}
+    .btn{
+      padding:10px 14px;border-radius:14px;border:1px solid rgba(26,115,232,.25);
+      background:rgba(26,115,232,.10);color:var(--text);font-weight:700;display:inline-block
+    }
+    .btnPrimary{
+      border:0;background:var(--blue);color:#fff;
+      box-shadow:0 12px 22px rgba(26,115,232,.22);
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;grid-template-columns: 1.1fr .9fr;gap:18px;
+      padding:22px 0 10px;
+    }
+    .heroLeft{
+      background:linear-gradient(135deg,#ffffff, var(--blue2));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+      overflow:hidden;
+      position:relative;
+    }
+    .heroLeft:after{
+      content:"";
+      position:absolute;right:-90px;top:-90px;
+      width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, rgba(26,115,232,.22), transparent 55%);
+    }
+    h1{margin:0 0 10px;font-size:38px;line-height:1.12}
+    .sub{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      background:#fff;border:1px solid var(--border);color:var(--muted);
+      box-shadow:0 6px 16px rgba(15,23,42,.05);
+      font-size:13px;
+    }
+    .chip b{color:var(--text);font-weight:700}
+
+    .heroRight{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+    .boxTitle{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .badge{
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      background:rgba(26,115,232,.10);border:1px solid rgba(26,115,232,.18);color:#185abc;
+      font-weight:700;
+    }
+    .form{margin-top:12px;display:grid;gap:10px}
+    label{font-size:12px;color:var(--muted)}
+    .field{display:grid;gap:6px}
+    input,select{
+      width:100%;padding:12px 12px;border-radius:14px;
+      border:1px solid var(--border);background:#fff;color:var(--text);
+      outline:none;
+    }
+    input:focus,select:focus{border-color:rgba(26,115,232,.45); box-shadow:0 0 0 4px rgba(26,115,232,.10)}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .hint{font-size:12px;color:var(--muted);margin:8px 0 0}
+
+    /* Sections */
+    .section{margin-top:18px}
+    .sectionHead{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    h2{margin:0;font-size:22px}
+    .small{color:var(--muted);font-size:14px;margin:0}
+
+    /* Cards */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+    .card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .thumb{
+      height:140px;
+      background:linear-gradient(135deg, rgba(26,115,232,.18), rgba(26,115,232,.04));
+      display:flex;align-items:end;justify-content:space-between;
+      padding:12px;
+    }
+    .tag{
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      background:#fff;border:1px solid var(--border);color:var(--muted);font-weight:700
+    }
+    .content{padding:14px}
+    .title{margin:0 0 6px;font-size:18px}
+    .meta{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btnGhost{
+      padding:10px 12px;border-radius:14px;border:1px solid var(--border);
+      background:#fff;color:var(--text);font-weight:700;
+    }
+    .btnGhost:hover{border-color:rgba(26,115,232,.35)}
+    .divider{height:1px;background:var(--border);margin:12px 0}
+
+    /* Route compare */
+    .routes{display:grid;gap:12px;margin-top:12px}
+    .routeCard{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:14px;
+    }
+    .routeTop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .routeName{font-weight:800}
+    .routeGrid{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px
+    }
+    .mode{
+      border:1px solid var(--border);border-radius:16px;padding:10px;background:#fff;
+    }
+    .mode b{display:block}
+    .mode span{color:var(--muted);font-size:12px}
+    .routeCta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+    /* Floating Zalo button (demo) */
+    .float{
+      position:fixed;right:18px;bottom:18px;z-index:30;
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .fab{
+      width:52px;height:52px;border-radius:18px;
+      display:grid;place-items:center;
+      background:var(--blue);color:#fff;font-weight:900;
+      box-shadow:0 16px 28px rgba(26,115,232,.28);
+      border:0;cursor:pointer;
+    }
+    .fab2{
+      background:#fff;color:var(--text);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:800;
+    }
+
+    footer{padding:18px 0;color:var(--muted);text-align:center}
+
+    @media (max-width:950px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .routeGrid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:520px){
+      h1{font-size:30px}
+      .row2{grid-template-columns:1fr}
+      .routeGrid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">TM</div>
+        <div>TimeMove</div>
+      </div>
+      <div class="menu">
+        <a href="#diadiem">Địa điểm</a>
+        <a href="#ketnoi">Kết nối giao thông</a>
+        <a href="#tip">Kinh nghiệm</a>
+        <a href="#lienhe">Liên hệ</a>
+      </div>
+      <a class="btn btnPrimary" href="#ketnoi">Tư vấn/Đặt tour</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="heroLeft">
+        <h1>Đi đúng nơi – Chọn đúng đường</h1>
+        <p class="sub">
+          TimeMove giới thiệu <b>địa điểm du lịch</b> và <b>kết nối giao thông</b> (✈️🚆🚌🚗)
+          theo phong cách hiện đại như “bán hàng/booking”: rõ ràng, nhanh, dễ chọn.
+        </p>
+
+        <div class="chips">
+          <div class="chip">⚡ <b>So sánh nhanh</b> thời gian/chi phí</div>
+          <div class="chip">🗺️ <b>Gợi ý tuyến</b> theo nơi đi</div>
+          <div class="chip">💬 <b>Tư vấn</b> qua Zalo/Hotline</div>
+        </div>
+
+        <p class="hint">Gợi ý: bắt đầu bằng 6–9 điểm đến Việt Nam, sau đó mở rộng.</p>
+      </div>
+
+      <div class="heroRight">
+        <div class="boxTitle">
+          <div>
+            <b>Tìm tuyến di chuyển</b><br/>
+            <span class="small">Nhập nơi đi/nơi đến để xem phương tiện phù hợp</span>
+          </div>
+          <span class="badge">Demo</span>
+        </div>
+
+        <div class="form">
+          <div class="row2">
+            <div class="field">
+              <label>Nơi đi</label>
+              <select id="from">
+                <option>TP.HCM</option>
+                <option>Hà Nội</option>
+                <option>Đà Nẵng</option>
+                <option>Cần Thơ</option>
+                <option>Hải Phòng</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Nơi đến</label>
+              <input id="to" placeholder="Ví dụ: Đà Lạt, Nha Trang, Phú Quốc..." />
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label>Phương tiện</label>
+              <select id="mode">
+                <option value="all">So sánh tất cả</option>
+                <option value="plane">Máy bay</option>
+                <option value="train">Tàu hoả</option>
+                <option value="bus">Xe khách</option>
+                <option value="car">Ô tô</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Ngày đi (tuỳ chọn)</label>
+              <input id="date" type="date" />
+            </div>
+          </div>
+
+          <button class="btn btnPrimary" onclick="findRoute()">Tìm tuyến</button>
+          <div class="hint">Tip: Sau này bạn có thể thêm “giá tour”, “lịch trình”, “đặt vé/đặt tour”.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLACES -->
+    <div id="diadiem" class="section">
+      <div class="sectionHead">
+        <div>
+          <h2>Điểm đến nổi bật</h2>
+          <p class="small">Card kiểu “sản phẩm”, có info di chuyển nhanh</p>
+        </div>
+        <a class="btn" href="#ketnoi">Xem tuyến phổ biến</a>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="thumb">
+            <span class="tag">Biển</span>
+            <span class="tag">Hot</span>
+          </div>
+          <div class="content">
+            <h3 class="title">Đà Nẵng</h3>
+            <p class="meta">Cầu Rồng • Bà Nà • Mỹ Khê</p>
+            <div class="divider"></div>
+            <p class="meta">Từ TP.HCM: ✈️ ~1h20 • 🚆 ~16–18h • 🚌 ~18–20h</p>
+            <div class="actions">
+              <button class="btnGhost" onclick="openPlace('Đà Nẵng')">Xem chi tiết</button>
+              <button class="btn btnPrimary" onclick="presetRoute('TP.HCM','Đà Nẵng')">Xem đường đi</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb">
+            <span class="tag">Núi</span>
+            <span class="tag">Chill</span>
+          </div>
+          <div class="content">
+            <h3 class="title">Đà Lạt</h3>
+            <p class="meta">Săn mây • Cafe • Không khí mát</p>
+            <div class="divider"></div>
+            <p class="meta">Từ TP.HCM: 🚌 ~6–8h • 🚗 ~6h • ✈️ (tuỳ chặng)</p>
+            <div class="actions">
+              <button class="btnGhost" onclick="openPlace('Đà Lạt')">Xem chi tiết</button>
+              <button class="btn btnPrimary" onclick="presetRoute('TP.HCM','Đà Lạt')">Xem đường đi</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb">
+            <span class="tag">Đảo</span>
+            <span class="tag">Resort</span>
+          </div>
+          <div class="content">
+            <h3 class="title">Phú Quốc</h3>
+            <p class="meta">Biển đẹp • Nghỉ dưỡng • Ẩm thực</p>
+            <div class="divider"></div>
+            <p class="meta">Từ TP.HCM: ✈️ ~1h • ⛴️ (tuỳ điểm xuất phát)</p>
+            <div class="actions">
+              <button class="btnGhost" onclick="openPlace('Phú Quốc')">Xem chi tiết</button>
+              <button class="btn btnPrimary" onclick="presetRoute('TP.HCM','Phú Quốc')">Xem đường đi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROUTES -->
+    <div id="ketnoi" class="section">
+      <div class="sectionHead">
+        <div>
+          <h2>Kết nối giao thông</h2>
+          <p class="small">So sánh phương tiện theo tuyến (demo dữ liệu)</p>
+        </div>
+      </div>
+
+      <div class="routes">
+        <div class="routeCard">
+          <div class="routeTop">
+            <div class="routeName">TP.HCM → Đà Nẵng</div>
+            <span class="badge">Tuyến phổ biến</span>
+          </div>
+          <div class="routeGrid">
+            <div class="mode"><b>✈️ Máy bay</b><span>~1h20 • từ ~900k</span></div>
+            <div class="mode"><b>🚆 Tàu hoả</b><span>~16–18h • từ ~500k</span></div>
+            <div class="mode"><b>🚌 Xe khách</b><span>~18–20h • từ ~450k</span></div>
+            <div class="mode"><b>🚗 Ô tô</b><span>~15–17h • tuỳ chi phí</span></div>
+          </div>
+          <div class="routeCta">
+            <button class="btnGhost" onclick="alert('Demo: mở trang chi tiết tuyến')">Xem chi tiết tuyến</button>
+            <button class="btn btnPrimary" onclick="alert('Demo: mở form tư vấn/đặt tour')">Nhận tư vấn</button>
+          </div>
+        </div>
+
+        <div class="routeCard">
+          <div class="routeTop">
+            <div class="routeName">Hà Nội → Sapa</div>
+            <span class="badge">Cuối tuần</span>
+          </div>
+          <div class="routeGrid">
+            <div class="mode"><b>🚗 Ô tô</b><span>~5–6h • chủ động</span></div>
+            <div class="mode"><b>🚌 Xe khách</b><span>~5–6h • từ ~250k</span></div>
+            <div class="mode"><b>🚆 Tàu hoả</b><span>~8h • đến Lào Cai</span></div>
+            <div class="mode"><b>✈️ Máy bay</b><span>Không phổ biến</span></div>
+          </div>
+          <div class="routeCta">
+            <button class="btnGhost" onclick="alert('Demo: mở lịch trình gợi ý')">Gợi ý lịch trình</button>
+            <button class="btn btnPrimary" onclick="alert('Demo: tư vấn đặt xe/khách sạn')">Đặt dịch vụ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIPS -->
+    <div id="tip" class="section">
+      <div class="sectionHead">
+        <div>
+          <h2>Kinh nghiệm nhanh</h2>
+          <p class="small">3 gợi ý giúp trang trông “có giá trị” như web bán hàng</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="content">
+            <h3 class="title">Chọn phương tiện</h3>
+            <p class="meta">Ưu tiên ✈️ nếu thời gian ít, 🚆 nếu muốn trải nghiệm, 🚌 nếu tiết kiệm.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h3 class="title">Mùa đẹp để đi</h3>
+            <p class="meta">Mỗi địa điểm có mùa đẹp khác nhau — thêm mục “thời điểm lý tưởng” ở trang chi tiết.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h3 class="title">CTA rõ ràng</h3>
+            <p class="meta">Luôn có nút “Nhận tư vấn/Đặt tour” để chuyển đổi giống trang bán hàng.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="lienhe" class="section">
+      <div class="sectionHead">
+        <div>
+          <h2>Liên hệ</h2>
+          <p class="small">Bạn thay thông tin thật của bạn ở đây</p>
+        </div>
+      </div>
+
+      <div class="routeCard">
+        <div class="routeTop">
+          <div class="routeName">TimeMove</div>
+          <span class="badge">Hỗ trợ nhanh</span>
+        </div>
+        <div class="routeGrid">
+          <div class="mode"><b>📞 Hotline</b><span>0xxx xxx xxx</span></div>
+          <div class="mode"><b>💬 Zalo</b><span>0xxx xxx xxx</span></div>
+          <div class="mode"><b>✉️ Email</b><span>contact@timemove</span></div>
+          <div class="mode"><b>📍 Khu vực</b><span>Việt Nam</span></div>
+        </div>
+        <div class="routeCta">
+          <button class="btn btnPrimary" onclick="alert('Demo: mở chat Zalo/FB')">Nhắn tư vấn</button>
+          <button class="btnGhost" onclick="window.scrollTo({top:0,behavior:'smooth'})">Lên đầu trang</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>© <span id="y"></span> TimeMove • GitHub Pages</footer>
+  </div>
+
+  <div class="float">
+    <button class="fab" title="Zalo (demo)" onclick="alert('Demo: bạn sẽ gắn link Zalo ở đây')">Z</button>
+    <button class="fab fab2" title="Gọi (demo)" onclick="alert('Demo: bạn sẽ gắn hotline ở đây')">☎</button>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    function presetRoute(from,to){
+      document.getElementById('from').value = from;
+      document.getElementById('to').value = to;
+      window.location.hash = "#ketnoi";
+    }
+
+    function findRoute(){
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value.trim();
+      const mode = document.getElementById('mode').value;
+      if(!to){ alert("Bạn hãy nhập Nơi đến nhé."); return; }
+      alert("Demo tìm tuyến: " + from + " → " + to + " | Chế độ: " + (mode==="all"?"So sánh tất cả":mode));
+      window.location.hash = "#ketnoi";
+    }
+
+    function openPlace(name){
+      alert("Demo trang chi tiết: " + name + "\\n(Sau này mình sẽ giúp bạn tách trang place.html hoặc dùng dữ liệu JSON.)");
+    }
+  </script>
+</body>
+</html>
