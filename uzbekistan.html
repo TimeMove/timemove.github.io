@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Uzbekistan – Viên ngọc Trung Á | TimeMove</title>
-  <meta name="description" content="Uzbekistan: Samarkand, Bukhara, Khiva – vibe Con đường Tơ lụa. Gợi ý đi mùa nào, cách đi và cách di chuyển trong nước." />
+  <title>Uzbekistan – Con đường Tơ lụa & thành phố cổ | TimeMove</title>
+  <meta name="description" content="Gợi ý du lịch Uzbekistan: Samarkand, Bukhara, Khiva, Tashkent. Nên đi mùa nào, đi từ Việt Nam ra sao, di chuyển nội địa và tips dễ áp dụng." />
 
   <style>
     :root{
@@ -12,204 +12,355 @@
       --card:#ffffff;
       --text:#0f172a;
       --muted:#475569;
+      --border:#E6EAF2;
       --blue:#1A73E8;
-      --shadow:0 12px 30px rgba(0,0,0,.08);
-      --radius:16px;
+      --blue2:#E8F0FE;
+      --shadow:0 12px 30px rgba(15,23,42,.08);
+      --shadow2:0 20px 50px rgba(15,23,42,.12);
+      --radius:18px;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:900px;margin:0 auto;padding:20px}
-    .back{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;color:var(--blue);font-weight:700}
-    h1{font-size:34px;margin:10px 0 10px}
-    h2{margin:26px 0 10px}
-    p{line-height:1.75;color:var(--muted);margin:0 0 10px}
-
-    .heroImg{
-      height:280px;border-radius:18px;margin:10px 0 16px;
-      background-image:
-        linear-gradient(180deg, rgba(15,23,42,.10), rgba(15,23,42,.62)),
-        url('https://images.unsplash.com/photo-1602260235481-5d2a6d7bf48d?auto=format&fit=crop&w=1600&q=70');
-      background-size:cover;background-position:center;
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(26,115,232,.12), transparent 55%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(26,115,232,.10), transparent 60%),
+                  var(--bg);
+      color:var(--text);
     }
-    .heroText{
-      position:absolute;left:16px;right:16px;bottom:14px;
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:980px;margin:0 auto;padding:20px}
+    .toprow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+    .back{
+      display:inline-flex;align-items:center;gap:10px;
+      color:var(--blue);font-weight:800;
+      padding:10px 12px;border-radius:14px;
+      background:rgba(26,115,232,.10);
+      border:1px solid rgba(26,115,232,.18);
+    }
+    .pill{
+      font-size:12px;font-weight:800;color:#185abc;
+      padding:8px 10px;border-radius:999px;
+      background:rgba(26,115,232,.10);
+      border:1px solid rgba(26,115,232,.18);
+      white-space:nowrap;
+    }
+
+    /* HERO */
+    .hero{
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow2);
+      border:1px solid rgba(230,234,242,.9);
+      background:#fff;
+    }
+    .heroImg{
+      height:320px;
+      position:relative;
+      background-image:
+        linear-gradient(180deg, rgba(15,23,42,.10), rgba(15,23,42,.72)),
+        url("https://source.unsplash.com/1600x900/?samarkand,uzbekistan");
+      background-size:cover;
+      background-position:center;
+    }
+    .heroContent{
+      position:absolute;left:18px;right:18px;bottom:16px;
       color:#fff;
     }
-    .heroText b{display:inline-block;background:rgba(26,115,232,.85);padding:6px 10px;border-radius:999px}
-    .heroText div{margin-top:8px;opacity:.95}
+    .heroTitle{
+      margin:0 0 8px;
+      font-size:34px;line-height:1.15;
+      letter-spacing:.2px;
+    }
+    .heroSub{margin:0;color:rgba(255,255,255,.92);line-height:1.6}
+    .heroChips{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(6px);
+      font-size:13px;
+    }
 
+    /* LAYOUT */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      margin-top:14px;
+    }
     .card{
       background:var(--card);
-      border-radius:18px;
-      padding:18px;
-      margin:14px 0;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
       box-shadow:var(--shadow);
+      padding:16px;
+    }
+    .card h2{margin:0 0 10px;font-size:20px}
+    p{margin:0 0 10px;line-height:1.75;color:var(--muted)}
+    .muted{color:var(--muted)}
+    .tagRow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;font-weight:800;
+      padding:7px 10px;border-radius:999px;
+      background:var(--blue2);
+      color:#185abc;
+      border:1px solid rgba(26,115,232,.18);
+    }
+    .list{margin:0;padding-left:18px;color:var(--muted);line-height:1.75}
+    .list li{margin:6px 0}
+
+    /* GALLERY */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    .photo{
+      border-radius:16px;
+      overflow:hidden;
       border:1px solid rgba(230,234,242,.9);
+      background:#fff;
+      box-shadow:0 10px 24px rgba(15,23,42,.08);
+      transform: translateY(0);
       transition: transform .22s ease, box-shadow .22s ease;
     }
-    .card:hover{transform: translateY(-4px); box-shadow:0 18px 36px rgba(0,0,0,.10)}
-    .tag{
-      display:inline-block;
-      background:#e8f0fe;color:var(--blue);
-      padding:6px 10px;border-radius:999px;
-      font-size:12px;margin-right:6px;font-weight:700
+    .photo:hover{
+      transform: translateY(-4px);
+      box-shadow:0 18px 38px rgba(15,23,42,.12);
     }
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    .photo img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      display:block;
+    }
+    .caption{
+      padding:10px 12px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    /* INFO BOXES */
+    .miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
     .mini{
-      border:1px solid rgba(230,234,242,.9);
+      border:1px solid var(--border);
       border-radius:16px;
       padding:12px;
       background:#fff;
     }
-    .mini b{display:block;margin-bottom:4px}
+    .mini b{display:block;margin-bottom:6px}
+    .mini span{color:var(--muted);font-size:13px;line-height:1.6}
 
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin:12px 0 4px;
-    }
-    .gallery img{
-      width:100%;
-      height:150px;
-      object-fit:cover;
-      border-radius:14px;
-      box-shadow:0 10px 24px rgba(0,0,0,.08);
-      transition: transform .22s ease, box-shadow .22s ease;
-    }
-    .gallery img:hover{
-      transform: translateY(-4px);
-      box-shadow:0 16px 32px rgba(0,0,0,.12);
-    }
-
+    /* CTA */
     .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .btn{
       display:inline-block;
-      padding:10px 14px;
+      padding:11px 14px;
       border-radius:14px;
+      font-weight:900;
       border:1px solid rgba(26,115,232,.25);
       background:rgba(26,115,232,.10);
       color:var(--text);
-      font-weight:800;
+      cursor:pointer;
     }
     .btnPrimary{
+      border:0;
       background:var(--blue);
-      border:0;color:#fff;
+      color:#fff;
       box-shadow:0 12px 22px rgba(26,115,232,.22);
     }
 
-    footer{color:#64748b;margin:18px 0 0;text-align:center}
+    /* REVEAL */
+    .reveal{opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease;}
+    .reveal.in{opacity:1; transform: translateY(0);}
 
-    @media (max-width:820px){
+    footer{
+      text-align:center;
+      color:#64748b;
+      margin:18px 0 0;
+      padding:14px 0;
+    }
+
+    @media (max-width:920px){
+      .grid{grid-template-columns:1fr}
       .gallery{grid-template-columns:1fr}
-      .gallery img{height:220px}
-      .grid2{grid-template-columns:1fr}
-      h1{font-size:30px}
+      .photo img{height:220px}
+      .miniGrid{grid-template-columns:1fr}
+      .heroImg{height:280px}
+      .heroTitle{font-size:28px}
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <a class="back" href="index.html">← Quay về TimeMove</a>
-
-    <div class="heroImg">
-      <div class="heroText">
-        <b>Uzbekistan 🇺🇿</b>
-        <div>Con đường Tơ lụa • Mái vòm xanh ngọc • Thành phố cổ “đẹp như phim”</div>
-      </div>
+    <div class="toprow">
+      <a class="back" href="index.html">← Quay về TimeMove</a>
+      <span class="pill">Bài viết • Uzbekistan 🇺🇿</span>
     </div>
 
-    <h1>Uzbekistan – Viên ngọc bí ẩn của Trung Á</h1>
-    <p>
-      Uzbekistan là kiểu điểm đến “lạ mà mê”: vừa cổ kính, vừa yên bình, lại có rất nhiều công trình đẹp xuất sắc
-      từ thời Con đường Tơ lụa. Nếu bạn thích kiến trúc Hồi giáo, thành phố cổ, và cảm giác “đi lạc vào nghìn lẻ một đêm”
-      thì thử Uzbekistan một lần là nhớ luôn.
-    </p>
-
-    <div class="gallery">
-      <img alt="Samarkand - Registan" src="https://images.unsplash.com/photo-1602260235481-5d2a6d7bf48d?auto=format&fit=crop&w=1600&q=70">
-      <img alt="Bukhara" src="https://images.unsplash.com/photo-1603122630575-3f6254ad6b6d?auto=format&fit=crop&w=1600&q=70">
-      <img alt="Khiva" src="https://images.unsplash.com/photo-1610970889108-1cf3f5c4e5c9?auto=format&fit=crop&w=1600&q=70">
-    </div>
-
-    <div class="card">
-      <span class="tag">Văn hoá</span>
-      <span class="tag">Lịch sử</span>
-      <span class="tag">Khám phá</span>
-      <p>
-        Uzbekistan nổi tiếng với <b>Samarkand</b>, <b>Bukhara</b>, <b>Khiva</b> — những “ngôi sao” trên Con đường Tơ lụa.
-        Đi ở đây giống như bạn đang xem một bộ phim lịch sử với mái vòm xanh, tường gạch nung và những khu chợ cổ.
-      </p>
-    </div>
-
-    <h2>📍 Nên đi đâu ở Uzbekistan?</h2>
-    <div class="card">
-      <div class="grid2">
-        <div class="mini">
-          <b>Samarkand</b>
-          <span>Registan, lăng mộ, màu xanh ngọc “đỉnh cao”.</span>
-        </div>
-        <div class="mini">
-          <b>Bukhara</b>
-          <span>Cổ kính, yên bình, đi bộ lang thang là vui.</span>
-        </div>
-        <div class="mini">
-          <b>Khiva</b>
-          <span>Như bảo tàng ngoài trời với tường thành và cung điện.</span>
-        </div>
-        <div class="mini">
-          <b>Tashkent</b>
-          <span>Thủ đô hiện đại hơn, metro đẹp và dễ đi.</span>
+    <!-- HERO -->
+    <div class="hero reveal">
+      <div class="heroImg">
+        <div class="heroContent">
+          <h1 class="heroTitle">Uzbekistan – “đẹp như phim” trên Con đường Tơ lụa</h1>
+          <p class="heroSub">
+            Thành phố cổ • mái vòm xanh ngọc • chợ truyền thống • vibe nghìn lẻ một đêm.
+            Nếu bạn thích lịch sử và kiến trúc, Uzbekistan là lựa chọn cực đáng thử.
+          </p>
+          <div class="heroChips">
+            <div class="chip">🕌 Samarkand / Bukhara / Khiva</div>
+            <div class="chip">🚆 Tàu nội địa tiện</div>
+            <div class="chip">🌤 Đẹp nhất: 4–6 & 9–10</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <h2>🌤 Đi mùa nào đẹp?</h2>
-    <div class="card">
-      <p><b>Tháng 4–6:</b> trời mát, nắng đẹp, rất hợp đi tham quan và chụp ảnh.</p>
-      <p><b>Tháng 9–10:</b> mùa thu dễ chịu, không quá đông.</p>
-      <p><b>Tháng 7–8:</b> có thể nóng, đi sẽ hơi “đuối” nếu phải di chuyển nhiều.</p>
-      <p><b>Mùa đông:</b> lạnh hơn, có nơi có tuyết; hợp nếu bạn thích không khí mùa đông.</p>
-    </div>
+    <!-- MAIN -->
+    <div class="grid">
+      <!-- LEFT -->
+      <div class="card reveal">
+        <div class="tagRow">
+          <span class="tag">Văn hoá</span>
+          <span class="tag">Lịch sử</span>
+          <span class="tag">Khám phá</span>
+        </div>
 
-    <h2>✈️ Đi từ Việt Nam sang Uzbekistan</h2>
-    <div class="card">
-      <p>
-        Thường bạn sẽ bay <b>quá cảnh</b> (ví dụ qua Istanbul/Dubai/Doha… tuỳ chặng và mùa).
-        Điểm đến phổ biến là <b>Tashkent</b>.
-      </p>
-      <p>⏱ Tổng thời gian hay rơi vào khoảng <b>15–25 tiếng</b> (tuỳ thời gian chờ nối chuyến).</p>
+        <h2>Uzbekistan có gì hay?</h2>
+        <p>
+          Uzbekistan là kiểu điểm đến “lạ mà mê”: cổ kính, yên bình, nhưng công trình thì hoành tráng.
+          Bạn sẽ thấy những quảng trường gạch men xanh, các khu phố cổ và cảm giác như đang bước vào một câu chuyện trên Con đường Tơ lụa.
+        </p>
 
-      <div class="ctaRow">
-        <a class="btn btnPrimary" href="index.html#ketnoi">Xem mục “Cách đi”</a>
-        <button class="btn" onclick="alert('Gợi ý: bạn có thể ghi thêm hãng bay/điểm quá cảnh bạn thích vào đây.')">Ghi chú thêm</button>
+        <h2>📍 Nên đi đâu?</h2>
+        <div class="miniGrid">
+          <div class="mini">
+            <b>Samarkand</b>
+            <span>Registan nổi bật nhất — lên hình “rực rỡ” luôn.</span>
+          </div>
+          <div class="mini">
+            <b>Bukhara</b>
+            <span>Cổ, chill, đi bộ lang thang là đủ vui.</span>
+          </div>
+          <div class="mini">
+            <b>Khiva</b>
+            <span>Như bảo tàng ngoài trời với tường thành cổ.</span>
+          </div>
+          <div class="mini">
+            <b>Tashkent</b>
+            <span>Thủ đô hiện đại hơn; metro đẹp, dễ đi.</span>
+          </div>
+        </div>
+
+        <h2 style="margin-top:16px">📸 Ảnh gợi ý (bấm vào để xem rõ hơn)</h2>
+        <p class="muted">Nếu ảnh không hiện, bạn kéo xuống phần “Cách xử lý” ở cuối trang nhé.</p>
+
+        <div class="gallery">
+          <div class="photo">
+            <img
+              src="https://source.unsplash.com/1200x900/?registan,samarkand"
+              alt="Registan - Samarkand"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            />
+            <div class="caption">Registan (Samarkand) – “ngôi sao” của Uzbekistan</div>
+          </div>
+
+          <div class="photo">
+            <img
+              src="https://source.unsplash.com/1200x900/?bukhara,uzbekistan"
+              alt="Bukhara"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            />
+            <div class="caption">Bukhara – cổ kính, yên bình, hợp đi dạo</div>
+          </div>
+
+          <div class="photo">
+            <img
+              src="https://source.unsplash.com/1200x900/?khiva,uzbekistan"
+              alt="Khiva"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            />
+            <div class="caption">Khiva – cảm giác như “bảo tàng ngoài trời”</div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:18px">🌤 Đi mùa nào đẹp?</h2>
+        <ul class="list">
+          <li><b>Tháng 4–6:</b> trời mát, nắng đẹp, rất hợp tham quan & chụp ảnh.</li>
+          <li><b>Tháng 9–10:</b> mùa thu dễ chịu, đi bộ không bị “đuối”.</li>
+          <li><b>Tháng 7–8:</b> có thể nóng — nếu đi mùa này thì chọn lịch trình nhẹ hơn.</li>
+          <li><b>Mùa đông:</b> lạnh hơn, nhưng có “vibe” mùa đông rất riêng.</li>
+        </ul>
+
+        <div class="ctaRow">
+          <a class="btn btnPrimary" href="index.html#diadiem">Xem các điểm đến khác</a>
+          <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">Lên đầu trang</button>
+        </div>
       </div>
-    </div>
 
-    <h2>🚆 Di chuyển trong Uzbekistan</h2>
-    <div class="card">
-      <p><b>Tàu</b> rất tiện để đi giữa các thành phố lớn (Tashkent – Samarkand – Bukhara…).</p>
-      <p><b>Taxi</b> thường dễ gọi và chi phí ổn (tuỳ khu vực).</p>
-      <p><b>Metro Tashkent</b> đẹp, dễ đi, trải nghiệm cũng hay.</p>
-      <p><b>Đi bộ</b> là chân ái khi bạn khám phá khu cổ.</p>
-    </div>
+      <!-- RIGHT -->
+      <div>
+        <div class="card reveal">
+          <h2>✈️ Đi từ Việt Nam sang Uzbekistan</h2>
+          <p>
+            Thường bạn sẽ bay <b>quá cảnh</b> (tuỳ chặng và mùa). Điểm đến phổ biến là <b>Tashkent</b>.
+            Tổng thời gian hay rơi vào khoảng <b>15–25 tiếng</b>.
+          </p>
+          <div class="miniGrid">
+            <div class="mini">
+              <b>Tip</b>
+              <span>Nên chọn thời gian nối chuyến “dư dả” để đỡ gấp.</span>
+            </div>
+            <div class="mini">
+              <b>Tip</b>
+              <span>Tải map offline + chuẩn bị eSIM/roaming trước.</span>
+            </div>
+          </div>
+        </div>
 
-    <h2>🧠 Mẹo nhỏ cho lần đầu</h2>
-    <div class="card">
-      <p>• Không phải chỗ nào cũng nói tiếng Anh tốt — bạn nên chuẩn bị sẵn vài câu cơ bản hoặc dùng app dịch.</p>
-      <p>• Nên có <b>tiền mặt</b> để tiện chi tiêu; đổi tiền tại nơi uy tín.</p>
-      <p>• Internet có thể không nhanh như châu Âu — tải map offline trước.</p>
-      <p>• Bạn sẽ đi bộ nhiều: mang giày êm + thoải mái.</p>
-    </div>
+        <div class="card reveal">
+          <h2>🚆 Di chuyển trong Uzbekistan</h2>
+          <ul class="list">
+            <li><b>Tàu</b> rất tiện giữa Tashkent – Samarkand – Bukhara.</li>
+            <li><b>Taxi</b> ổn, dễ gọi (tuỳ khu vực).</li>
+            <li><b>Metro Tashkent</b> đẹp & dễ đi.</li>
+            <li><b>Đi bộ</b> là “chân ái” khi khám phá khu cổ.</li>
+          </ul>
+        </div>
 
-    <div class="card">
-      <p><b>Tóm lại:</b> Nếu bạn muốn một chuyến đi khác lạ, ít đông đúc, nhiều lịch sử và rất “điện ảnh”,
-        Uzbekistan là lựa chọn cực đáng thử.</p>
+        <div class="card reveal">
+          <h2>🧠 Mẹo nhỏ cho lần đầu</h2>
+          <ul class="list">
+            <li>Không phải chỗ nào cũng nói tiếng Anh tốt → dùng app dịch.</li>
+            <li>Nên có <b>tiền mặt</b> để chi tiêu thuận tiện.</li>
+            <li>Internet có thể không nhanh → chuẩn bị trước.</li>
+            <li>Mang giày êm vì đi bộ nhiều.</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <h2>✅ Cách xử lý nếu bạn không xem được ảnh</h2>
+          <ul class="list">
+            <li>Nhấn <b>Ctrl + F5</b> để tải mới hoàn toàn.</li>
+            <li>Thử đổi mạng (4G/wi-fi khác) vì đôi khi ảnh bị chặn theo mạng.</li>
+            <li>Nếu vẫn lỗi: bạn bảo mình, mình sẽ đổi sang ảnh lưu trong repo (ổn định 100%).</li>
+          </ul>
+
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="index.html">Về trang chủ</a>
+            <button class="btn" onclick="alert('Bạn nhắn mình: “ảnh vẫn không hiện” là mình đổi sang ảnh upload trong repo cho chắc nhé.')">Báo mình nếu lỗi</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer>© <span id="y"></span> TimeMove</footer>
@@ -217,6 +368,18 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('reveal'));
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
